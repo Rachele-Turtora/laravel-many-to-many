@@ -117,6 +117,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        // cancello la relazione a prescindere dalla configurazione del DB 
+        // (ho messo cascadeOnDelete quindi laravel lo farebbe per me in questo caso)
+        $project->technologies()->detach();
+
         if ($project->cover_img) {
             Storage::delete($project->cover_img);
         }
