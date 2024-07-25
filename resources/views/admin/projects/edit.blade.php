@@ -45,6 +45,32 @@
         @endforeach
         @endif
     </div>
+
+    <div class="mb-3">
+        <label for="technologies" class="form-label">Technologies</label>
+        <div>
+            @foreach ($technologies as $technology)
+            <div class="form-check form-check-inline">
+                @if ($errors->any())
+                <input class="form-check-input" type="checkbox" id="technology-{{$technology->id}}" value="{{$technology->id}}" name="technologies[]" {{in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                <label class="form-check-label" for="technology-{{$technology->id}}">{{$technology->title}}</label>
+                @else
+                <input class="form-check-input" type="checkbox" id="technology-{{$technology->id}}" value="{{$technology->id}}" name="technologies[]" {{$project->technologies->contains($technology) ? 'checked' : ''}}>
+                <label class="form-check-label" for="technology-{{$technology->id}}">{{$technology->title}}</label>
+                @endif
+
+            </div>
+            @endforeach
+        </div>
+        @if ($errors->has('technologies'))
+        <div class="invalid-feedback d-block">
+            @foreach ($errors->get('technologies') as $message)
+            {{ $message }}<br>
+            @endforeach
+        </div>
+        @endif
+    </div>
+
     <div class="mb-3">
         <label for="cover-img" class="form-label">Cover image</label>
         <input class="form-control @if ($errors->get('cover_img')) is-invalid @endif" type="file" name="cover_img" id="cover-img">
