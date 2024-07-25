@@ -12,6 +12,12 @@
     <h2>{{$project['title']}}</h2>
     <p><strong>Creato da: </strong>{{$project->user?->name ?: "Utente sconosciuto"}}</p>
     <p><strong>Tipo: </strong>{{$project->type?->title ?: "Undefined"}}</p>
+    <p><strong>Tecnologie utilizzate: </strong></p>
+    <ul>
+        @foreach ($project->technologies as $technology)
+        <li>{{$technology->title}}</li>
+        @endforeach
+    </ul>
     @if ($project->cover_img)
     <img src="{{asset('storage/' . $project->cover_img)}}" alt="">
     @endif

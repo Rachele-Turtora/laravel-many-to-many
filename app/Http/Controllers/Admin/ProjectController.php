@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -32,8 +33,9 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.projects.create', compact('types'));
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -59,6 +61,12 @@ class ProjectController extends Controller
 
         //$project->fill($data);
         //$prject->save();
+
+        // se esistono tecnologie nella richiesta creo la relazione nella tabella pivot
+        if ($request->has('technologies')) {
+            // attacco le tecnologie alla tabella pivot
+            $project->technologies()->attach($request->technologies);
+        }
 
         return redirect()->route('admin.projects.show', $project->slug)->with('message', 'Progetto creato con successo');
     }
