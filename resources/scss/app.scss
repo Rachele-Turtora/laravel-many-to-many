@@ -51,9 +51,33 @@ ul {
 // Dashboard
 
 .dash-img-container {
-    height: 100px;
+    height: 200px;
 
     img {
         height: 100%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .dash-img-container {
+        height: 180px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .dash-img-container {
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dash-img-container {
+        height: 120px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .dash-img-container {
+        height: 220px;
     }
 }
