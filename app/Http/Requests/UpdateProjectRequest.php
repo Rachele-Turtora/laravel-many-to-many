@@ -25,6 +25,7 @@ class UpdateProjectRequest extends FormRequest
         return [
             'title' => ['required', 'min:5', 'max:55', 'string', Rule::unique('projects')->ignore($this->project)],
             'description' => 'min:5|string',
+            'cover_img' => 'nullable|image|max:2048',
             'type_id' => 'nullable|exists:types,id',
             'technologies' => 'nullable|exists:technologies,id'
         ];
@@ -40,6 +41,8 @@ class UpdateProjectRequest extends FormRequest
             'title.unique' => 'Questo titolo esiste già',
             'description.min' => 'La descrizione deve contenere minimo 5 caratteri',
             'description.string' => 'La descrizione deve essere una stringa',
+            'cover_img.image' => 'Il file deve essere un\'immagine',
+            'cover_img.max' => 'Il file può essere al massimo di 2MB',
             'type_id.exists' => 'L\'id del tipo selezionato non è valido',
             'technologies.exists' => 'Le tecnologie selezionate non sono valide'
         ];

@@ -6,22 +6,32 @@
 <ul>
     @foreach ($projects as $project)
     <li class="m-2">
-        <div class="d-flex">
-            <a href="{{route('admin.projects.show', $project)}}">
-                <span><strong>{{$project['title']}}</strong></span>
-            </a>
-            <a href="{{route('admin.projects.edit', $project)}}">
-                <button class="btn btn-outline-primary ms-4">Edit</button>
-            </a>
-            <form action="{{route('admin.projects.destroy', $project)}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-outline-danger ms-4">Delete</button>
-            </form>
+        <div class="w-75">
+            <div class="d-flex justify-content-between align-items-center mb-1 mt-3">
+                <div>
+                    <a href="{{route('admin.projects.show', $project)}}">
+                        <span class="title"><strong>{{$project['title']}}</strong></span>
+                    </a>
+                </div>
+                <div class="d-flex">
+                    <a href="{{route('admin.projects.edit', $project)}}">
+                        <button class="btn btn-outline-primary ms-4">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+                    </a>
+                    <button class="btn btn-outline-danger ms-3 delete-button">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <hr>
         </div>
     </li>
     @endforeach
+    @include('partials.modal')
 </ul>
 
-<a href="{{route('admin.projects.create')}}">Inserisci un nuovo progetto</a>
+<a href="{{route('admin.projects.create')}}">
+    <button class="btn btn-outline-secondary mx-3">Inserisci nuovo progetto</button>
+</a>
 @endsection

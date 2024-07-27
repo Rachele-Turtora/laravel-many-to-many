@@ -99,6 +99,9 @@ class ProjectController extends Controller
 
         $data['slug'] = Str::of($project->title)->slug('-');
 
+        $img_path = $request->hasFile('cover_img') ? $request->cover_img->store('uploads') : NULL;
+        $data['cover_img'] = $img_path;
+
         $project->update($data);
 
         if ($request->has('technologies')) {

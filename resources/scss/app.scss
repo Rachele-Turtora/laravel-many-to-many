@@ -1,8 +1,25 @@
 @import "~bootstrap/scss/bootstrap";
 
+// Utils
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+hr {
+    margin: 0;
+}
+
 img {
     width: 100%;
 }
+
+
+// Header
 
 .logo {
     width: 130px;
@@ -12,6 +29,31 @@ img {
     }
 }
 
+
+// Main
+
 .img-container {
     width: 300px;
+}
+
+ul {
+
+    .title {
+        color: black;
+    }
+
+    i {
+        font-size: 13px;
+    }
+}
+
+
+// Dashboard
+
+.dash-img-container {
+    height: 100px;
+
+    img {
+        height: 100%;
+    }
 }
